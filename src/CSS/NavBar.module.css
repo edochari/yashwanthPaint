@@ -1,0 +1,44 @@
+.navbarContainer{
+  height:70px;
+  width:100vw;
+  background-color: azure;
+  display:flex;
+}
+
+.navbarLogoContainer{
+    display:flex;
+    
+}
+.navbarLogo{
+    height:50px;
+    width:50px;
+    margin:10px 10px;
+}
+.navbarLogoName{
+    font-weight:500;
+    color:brown;
+    font-size:30px;
+    font-style:oblique;
+    margin:10px 0px 0px 0px;
+}
+.navbarSearchContainer{
+    margin:20px 0px 0px 120px;
+}
+.navbarSearchBox{
+    height:30px;
+    width:600px;
+    background-color: azure;
+    border: 1px solid black;
+}
+.navbarItemsContainer{
+    display:flex;
+}
+
+.navbarItemsContainer{
+    margin-left:80px;
+}
+.navbarIcon{
+    height:40px;
+    width:40px;
+    margin:20px;
+}

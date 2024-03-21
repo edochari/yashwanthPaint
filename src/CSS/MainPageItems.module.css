@@ -1,0 +1,20 @@
+.mainpageItemsContainer{
+    margin-top: 100px;
+
+}
+.mainPageItemsList{
+    display:flex;
+    height:800px;
+    width:100vw;
+    flex-wrap: wrap;
+    justify-content: space-around;
+   
+
+}
+.mainPageItem{
+    height:350px;
+    border:2px solid black;
+    width:35vw;
+    
+    border-radius: 10%;
+}
