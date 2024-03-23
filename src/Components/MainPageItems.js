@@ -6,31 +6,23 @@ import { collection } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";
+import { store } from "../redux/store";
+import { useSelector } from "react-redux";
 function MainPageItems(){
-    const [documents,setDocuments]=useState([]);
-    useEffect(()=>{
-       get();
-
-    },[]);
-    async function get(){
-        let docRef=collection(db,"Paints");
-        const snapShot= await getDocs(docRef);
-        
-        setDocuments(snapShot.docs);
-        console.log("documents",documents);
-        
-
-    }
+    const Products=useSelector((state)=>state.productsReducer.Products);
+   
+   
 
 
     return (
         <div className={styles.mainpageItemsContainer}>
             <ul className={styles.mainPageItemsList}>
-                {documents.map((item,index)=>(
+                {Products.map((item,index)=>(
                     
-                    <Link key={index} to="/items" className={styles.mainPageItem}>
-                        <p>{item.name}</p>
-                        <img src={item.data().image} alt="No image" />
+                    <Link key={index} to={`/items/${item.name}`} className={styles.mainPageItem}>
+                        <img src={item.image} alt="No image" className={styles.mainPageItemImage} />
+                        <p className={styles.mainPageItemText}>{item.name}</p>
+                       
                         
                     </Link>
                 ))}

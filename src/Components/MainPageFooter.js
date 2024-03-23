@@ -7,7 +7,7 @@ const MainPageFooter = () => {
           <h3>SIVA  BALAJI PAINTS</h3>
           <p>Yashwanth Kumar</p>
           <p>9986898707</p>
-          <p></p>
+          <p>Opp:Gurukul School,Kadapa,Andhra Pradesh,India,516002.</p>
         </div>
       </footer>
     );

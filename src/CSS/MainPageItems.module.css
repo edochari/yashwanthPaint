@@ -13,8 +13,24 @@
 }
 .mainPageItem{
     height:350px;
-    border:2px solid black;
     width:35vw;
-    
+    text-decoration: none;
     border-radius: 10%;
+    background-color:#F8F8F8;
+    
+
+}
+
+.mainPageItemImage{
+    height:300px;
+    width:100%;
+    border-radius: 10% 10% 0% 0%;
+   
+}
+.mainPageItemText{
+    color: #222222;
+    font-size: xx-large;
+    margin: 0;
+    
+    text-align: center;
 }

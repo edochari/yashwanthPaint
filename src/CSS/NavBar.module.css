@@ -1,7 +1,7 @@
 .navbarContainer{
-  height:70px;
+  height:12vh;
   width:100vw;
-  background-color: azure;
+  background-color: #FFFFFF;
   display:flex;
 }
 
@@ -16,10 +16,11 @@
 }
 .navbarLogoName{
     font-weight:500;
-    color:brown;
+    color:#E9004B;
     font-size:30px;
     font-style:oblique;
-    margin:10px 0px 0px 0px;
+   
+    margin:4px 5px 0px 10px;
 }
 .navbarSearchContainer{
     margin:20px 0px 0px 120px;
@@ -27,7 +28,7 @@
 .navbarSearchBox{
     height:30px;
     width:600px;
-    background-color: azure;
+    background-color:#FFFFFF;
     border: 1px solid black;
 }
 .navbarItemsContainer{
@@ -40,5 +41,5 @@
 .navbarIcon{
     height:40px;
     width:40px;
-    margin:20px;
+    margin:20px 20px;
 }

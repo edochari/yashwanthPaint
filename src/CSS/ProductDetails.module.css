@@ -1,0 +1,50 @@
+.placeholder_image
+{
+    height:200px;
+    width:120px;
+    margin:70px 100px;
+}
+.placeholder_description
+{
+    margin-top:100px;
+    padding:4px;
+}
+
+.no_cost_text{
+    font-weight: 600;
+}
+.placeholder_order
+{
+    height:100%;
+    width:250px;
+    margin-top:100px;
+    margin-left:40px;
+    padding:30px;
+    border-radius: 5%;
+    border:0.3px solid black;
+}
+.placeholder_description{
+    font-size: xx-large;
+
+}
+.placeholder_description_firstpart
+{
+    border-bottom: 0.5px solid ;
+}
+
+.placeorder__button{
+    width: 230px !important;
+    height: 40px;
+    border-radius: 40px;
+    margin: 5px;
+    border: 0px;
+    color: black;
+    cursor:pointer;
+}
+.buynow {
+    background-color: #FFD712;
+}
+.addtocart {
+    background-color: #FFA41B;
+    margin-top: 30px !important;
+}

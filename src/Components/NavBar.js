@@ -7,8 +7,11 @@ function NavBar(){
         <>
         <div className={styles.navbarContainer}>
             <div className={styles.navbarLogoContainer}>
-                <img src="https://cdn-icons-png.flaticon.com/128/2970/2970785.png" alt="No image" className={styles.navbarLogo} />
-                <p className={styles.navbarLogoName}>Yashwanth Paints</p>
+                <img src="https://cdn-icons-png.flaticon.com/128/1959/1959672.png" alt="No image" className={styles.navbarLogo} />
+                <div className={styles.navbarLogoNameContainer}>
+                <div className={styles.navbarLogoName}>Yashwanth</div>
+                <div className={styles.navbarLogoName}> Paints</div>
+                </div>
             </div>
             <div className={styles.navbarSearchContainer}>
                 <input type="text" className={styles.navbarSearchBox} />
