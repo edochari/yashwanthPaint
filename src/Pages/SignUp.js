@@ -3,26 +3,50 @@ import { useState } from 'react';
 import styles from '../CSS/LoginPage.module.css';
 import {auth} from "../Firebase/firebaseInit";
 import { useNavigate } from 'react-router-dom';
-
+import { onAuthStateChanged } from 'firebase/auth';
+import { db } from '../Firebase/firebaseInit';
+import { onSnapshot } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
+import { setDoc } from 'firebase/firestore';
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [signingUp, setSigningUp] = useState('');
+ 
   const navigate=useNavigate();
 
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth,email,password)
-    .then((userCredentials)=>{
-     navigate(-1);
-    }).catch((error)=>{
-     console.log(error);
-    })
+    .then(async (userCredentials)=>{
+     console.log(userCredentials.user.uid);
    
-  };
+          
+          await setDoc( doc(db, 'users',userCredentials.user.uid ), 
+              { email:email,
+              name:name,
+              cart:[]})
+          
+          .then(() => {
+            console.log("User document created in Firestore");
+          })
+          .catch(error => {
+            console.error("Error creating user document in Firestore: ", error);
+          });
+        })
+        navigate(-1);
+    
+    
+  }
+  
+       
+    
+
+   
+  
 
   
   return (
@@ -72,6 +96,6 @@ const SignUp = () => {
       </div>
     </form>
   );
-};
+}
 
 export default SignUp;

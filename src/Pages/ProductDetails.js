@@ -6,23 +6,19 @@ import getSymbolFromCurrency from 'currency-symbol-map';
 import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import {useDispatch} from "react-redux";
 import styles from "../CSS/ProductDetails.module.css";
-
+import { CartActions } from "../redux/slices/CartSlice";
 
 function ProductDetails(){
  
   const { Product } = useParams();
   const productDetails = JSON.parse(decodeURIComponent(Product));
+  const dispatch=useDispatch();
  
-
-  
-  useEffect(()=>{
-    
-    
-    
-  
-  })
+  const handleAdd=()=>{
+       dispatch(CartActions.addToCart(productDetails));
+  }
   return (
     <div>
             <Grid container>
@@ -58,11 +54,9 @@ function ProductDetails(){
                             
                             <div > 
                                 <Link to="/checkout">
-                                <button className={styles.placeorder__button+' '+styles.addtocart} >Add to Cart</button>
+                                <button className={styles.placeorder__button+' '+styles.addtocart} onClick={()=>handleAdd()} >Add to Cart</button>
                                 </Link>
-                                
-                                
-                                    <button className={styles.placeorder__button+' '+styles.buynow}>Buy Now</button>
+                                <button className={styles.placeorder__button+' '+styles.buynow}>Buy Now</button>
                                 
                             </div>
                         </div>

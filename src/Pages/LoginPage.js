@@ -30,9 +30,9 @@ const Login=()=>{
              <input type="password" placeholder='password' value={password} 
              onChange={(e)=>setPassword(e.target.value)}/>
           </div>
-          <div className={styles.field} >
-             <button >
-               {"Log In"}</button>
+          <div className={styles.linkContainer} >
+          <Link to="/"  className={styles.link} >
+               Login</Link>
           </div>
           <div className={styles.linkContainer} >
              <Link to="/signup"  className={styles.link} >
