@@ -25,6 +25,10 @@
 .navbarSearchContainer{
     margin:20px 0px 0px 120px;
 }
+
+.navbarUserContainer{
+    display:flex;
+}
 .navbarSearchBox{
     height:30px;
     width:600px;
@@ -42,4 +46,20 @@
     height:40px;
     width:40px;
     margin:20px 20px;
+}
+.displayName{
+    margin:25px;
+    color:#E9004B;
+    font-size: larger;
+    
+
+
+}
+.signOut{
+    color:#E9004B;
+    padding-bottom:22px;
+    border:none;
+    background-color: #FFFFFF;
+    font-size: larger;
+    cursor:pointer;
 }

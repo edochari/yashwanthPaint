@@ -4,9 +4,23 @@ import { Link } from "react-router-dom";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "../Firebase/firebaseInit";
 import { onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 function NavBar(){
     const [user,loading,error]=useAuthState(auth);
-    if(user){console.log(user.uid)};
+    const navigate=useNavigate();
+    const handleSignOut=()=>{
+        signOut(auth).then(() => {
+            // Sign-out successful.
+                navigate("/");
+                console.log("Signed out successfully")
+            }).catch((error) => {
+            // An error happened.
+            });
+    }
+    
+    
     
     return (
         <>
@@ -23,18 +37,12 @@ function NavBar(){
             </div>
             <div className={styles.navbarItemsContainer}>
                 <div className={styles.navbarUserContainer}>
-                    <Link to="/login">{
-                        onAuthStateChanged(auth,(user)=>{
-                            if(user){
-                                 return <div>{console.log(user.email)}</div>
-                            }
-                            else
-                            {
-
-                            }
-                        })
-                    }<img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="No User Icon" className={styles.navbarIcon}/></Link>
+                    <Link to="/login">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="No User Icon" className={styles.navbarIcon}/></Link>
                 </div>
+                {console.log("main user",user)}
+                {user?<div className={styles.displayName}>{user.displayName}</div>:null}
+                {user?<button onClick={handleSignOut} className={styles.signOut}>SignOut</button>:null}
                 
                 <div className={styles.navbarCartContainer}>
                     <img src="https://cdn-icons-png.flaticon.com/128/4903/4903482.png" alt="No cart icon" className={styles.navbarIcon} />

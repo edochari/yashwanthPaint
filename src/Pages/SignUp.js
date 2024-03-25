@@ -8,6 +8,8 @@ import { db } from '../Firebase/firebaseInit';
 import { onSnapshot } from 'firebase/firestore';
 import { doc } from 'firebase/firestore';
 import { setDoc } from 'firebase/firestore';
+import { updateProfile } from 'firebase/auth';
+
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,22 +23,28 @@ const SignUp = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth,email,password)
-    .then(async (userCredentials)=>{
-     console.log(userCredentials.user.uid);
-   
-          
-          await setDoc( doc(db, 'users',userCredentials.user.uid ), 
-              { email:email,
-              name:name,
-              cart:[]})
-          
-          .then(() => {
-            console.log("User document created in Firestore");
-          })
-          .catch(error => {
-            console.error("Error creating user document in Firestore: ", error);
-          });
-        })
+    .then(async (userCredentials)=> {
+      await setDoc( doc(db, 'users',userCredentials.user.uid ), 
+      { email:email,
+      name:name,
+      cart:[]})
+  
+  .then(() => {
+    console.log("user",userCredentials);
+    console.log("User document created in Firestore");
+  })
+  .catch(error => {
+    console.error("Error creating user document in Firestore: ", error);
+  });
+  updateProfile(auth.currentUser, {
+    displayName: name
+  }).then(() => {
+   console.log("Profile updated");
+  })
+     
+       
+  });
+    
         navigate(-1);
     
     

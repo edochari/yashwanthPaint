@@ -9,7 +9,7 @@
     font-size: 30px;
     color: #ef7917;
   }
-  .loginForm {
+.loginForm {
     background-color: #fff;
     padding: 20px;
     box-sizing: border-box;
@@ -22,7 +22,7 @@
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
-  .field {
+.field {
     width: 100%;
   }
   .field input {
@@ -39,7 +39,7 @@
     outline: none;
   }
   .field button{
-    width: 100%;
+    width: 96%;
     margin-top: 20px;
     background: #ef7917;
     border-radius: 2px;
@@ -50,10 +50,12 @@
     outline: none;
   }
   .linkContainer{
-    margin-top: 30px;
+    margin-top: 20px;
     width:100%;
+  
   }
   .link{
+    width:100%;
     font-size: 20px;
     padding-left: 147px;
     padding-right:147px;

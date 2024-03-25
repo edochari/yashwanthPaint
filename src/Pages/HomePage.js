@@ -10,9 +10,10 @@ import { getAsyncThunkData } from "../redux/slices/ProductSlice";
 import { useEffect } from "react";
 import ProductDetails from "../Pages/ProductDetails";
 import CheckOut from "./CheckOut";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../Firebase/firebaseInit";
 function HomePage(){
-  
+  const [user,loading,error]=useAuthState(auth);
   const dispatch=useDispatch();
   const router=createBrowserRouter([
     {path:"/",element:<NavBar />,children:[
@@ -25,6 +26,9 @@ function HomePage(){
     {path:"/signup",element:<SignUp />},
   
   ])
+  useEffect(()=>{
+
+  },[user]);
  
     return (
         <>

@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from '@mui/material/Grid';
-
-
+import { doc } from "firebase/firestore";
+import { getDoc } from "firebase/firestore";
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -9,15 +9,19 @@ import { Link } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import styles from "../CSS/ProductDetails.module.css";
 import { CartActions } from "../redux/slices/CartSlice";
-
+import { db } from "../Firebase/firebaseInit";
+import { auth } from "../Firebase/firebaseInit";
 function ProductDetails(){
  
   const { Product } = useParams();
   const productDetails = JSON.parse(decodeURIComponent(Product));
   const dispatch=useDispatch();
  
-  const handleAdd=()=>{
-       dispatch(CartActions.addToCart(productDetails));
+  const handleAdd=async ()=>{
+       const userId=auth.currentUser.uid;
+       
+      
+       
   }
   return (
     <div>

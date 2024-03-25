@@ -2,19 +2,24 @@ import styles from '../CSS/LoginPage.module.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import {auth} from "../Firebase/firebaseInit"
+import {auth} from "../Firebase/firebaseInit";
+import { useNavigate } from 'react-router-dom';
 
 const Login=()=>{
    const [email,setEmail] = useState('');
    const [password,setPassword] = useState('');
+   const navigate=useNavigate();
    const handleSubmit=async (e)=>{
      e.preventDefault();
+     console.log("submit login");
      signInWithEmailAndPassword(auth,email,password)
      .then((userCredentials)=>{
-      console.log(userCredentials);
+      console.log("user",userCredentials);
      }).catch((error)=>{
       console.log(error);
-     })
+     });
+    
+     navigate("/");
    }
 
    return (
@@ -30,9 +35,9 @@ const Login=()=>{
              <input type="password" placeholder='password' value={password} 
              onChange={(e)=>setPassword(e.target.value)}/>
           </div>
-          <div className={styles.linkContainer} >
-          <Link to="/"  className={styles.link} >
-               Login</Link>
+          <div className={styles.field} >
+        
+               <button onClick={handleSubmit}>Login</button>
           </div>
           <div className={styles.linkContainer} >
              <Link to="/signup"  className={styles.link} >

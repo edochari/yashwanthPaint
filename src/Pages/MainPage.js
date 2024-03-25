@@ -4,9 +4,7 @@ import MainPageItems from "../Components/MainPageItems";
 import styles from "../CSS/MainPage.module.css"
 import { useEffect } from "react";
 function MainPage(){
-    useEffect(()=>{
-
-    },[]);
+    
     return (
         <div className={styles.mainpageContainer}>
         
