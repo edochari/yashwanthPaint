@@ -1,4 +1,5 @@
 .carouselImage{
     height:88vh;
     width:100vw;
+    position:relative;
 }

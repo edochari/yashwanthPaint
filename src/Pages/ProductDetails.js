@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from '@mui/material/Grid';
-import { doc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { useState,useEffect } from "react";
@@ -11,18 +11,39 @@ import styles from "../CSS/ProductDetails.module.css";
 import { CartActions } from "../redux/slices/CartSlice";
 import { db } from "../Firebase/firebaseInit";
 import { auth } from "../Firebase/firebaseInit";
+import { updateDoc } from "firebase/firestore";
+import { arrayUnion } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 function ProductDetails(){
  
   const { Product } = useParams();
   const productDetails = JSON.parse(decodeURIComponent(Product));
   const dispatch=useDispatch();
+  const navigate=useNavigate();
  
   const handleAdd=async ()=>{
-       const userId=auth.currentUser.uid;
+    
+       if(auth.currentUser!==null){
+        const userId=auth.currentUser.uid;
+       let docRef=doc(db,'users',userId);
+       const docSnap=await getDoc(docRef);
+       await updateDoc(docRef, {
+        cart: arrayUnion(productDetails)
+    });
+    navigate("/checkout");
+  }
+    else{
+       navigate('/login');
+    }
+
+  }
        
+    
+    
+
       
        
-  }
+  
   return (
     <div>
             <Grid container>
@@ -33,7 +54,7 @@ function ProductDetails(){
               </Grid>
               <Grid item xs={3}>
                 <div className={styles.placeholder_description}>
-                    <div className={styles.laceholder_description_firstpart}>
+                    <div className={styles.placeholder_description_firstpart}>
                         <div style={{fontSize:"40px",margin:"3px"}}>{productDetails.name}</div>
                        
                     </div>
@@ -57,9 +78,9 @@ function ProductDetails(){
                         <div className={styles.placeholder_order}>
                             
                             <div > 
-                                <Link to="/checkout">
+                               
                                 <button className={styles.placeorder__button+' '+styles.addtocart} onClick={()=>handleAdd()} >Add to Cart</button>
-                                </Link>
+                               
                                 <button className={styles.placeorder__button+' '+styles.buynow}>Buy Now</button>
                                 
                             </div>

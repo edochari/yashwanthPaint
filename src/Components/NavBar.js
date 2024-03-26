@@ -6,10 +6,19 @@ import {auth} from "../Firebase/firebaseInit";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 function NavBar(){
     const [user,loading,error]=useAuthState(auth);
     const navigate=useNavigate();
+    const [showOptions, setShowOptions] = useState(false);
+    const handleSearchBarClick = () => {
+        setShowOptions(true);
+      };
+
+      const handleOptionClick = (option) => {
+       
+        setShowOptions(false);
+      };
     const handleSignOut=()=>{
         signOut(auth).then(() => {
             // Sign-out successful.
@@ -19,7 +28,6 @@ function NavBar(){
             // An error happened.
             });
     }
-    
     
     
     return (
@@ -33,7 +41,17 @@ function NavBar(){
                 </div>
             </div>
             <div className={styles.navbarSearchContainer}>
-                <input type="text" className={styles.navbarSearchBox} />
+                <input type="text" className={styles.navbarSearchBox} onClick={handleSearchBarClick} />
+                {showOptions && (
+        <div className={styles.searchBarOptions}>
+          <div onClick={() => {navigate("/items/Interior"); window.location.reload();}}>Interior</div>
+          <div onClick={() => {navigate("/items/Exterior"); window.location.reload();}}>Exterior</div>
+          <div onClick={() => {navigate("/items/Wall Papers"); window.location.reload();}}>Wall Papers</div>
+          <div onClick={() => {navigate("/items/Wall Stickers"); window.location.reload();}}>Wall Stickers</div>
+
+        </div>
+      )}
+    
             </div>
             <div className={styles.navbarItemsContainer}>
                 <div className={styles.navbarUserContainer}>
@@ -46,6 +64,14 @@ function NavBar(){
                 
                 <div className={styles.navbarCartContainer}>
                     <img src="https://cdn-icons-png.flaticon.com/128/4903/4903482.png" alt="No cart icon" className={styles.navbarIcon} />
+                    {
+                        user?<div classname={styles.cartItemsCount}>
+                            0
+                        
+                            </div>
+                        :null
+                    }
+                    
 
                 </div>
             </div>

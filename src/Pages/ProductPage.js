@@ -36,7 +36,7 @@ function ProductPage(){
                 
                 <div key={index} className={styles.Product} >
                     
-                    <Link to={`/${encodeURIComponent(JSON.stringify(Product))}`} style={{"textDecoration":"none"}}><img src={Product.image}  alt="No image" />
+                    <Link to={`/${encodeURIComponent(JSON.stringify(Product))}`} style={{"textDecoration":"none"}}><img src={Product.image}  alt="No image" className={styles.ProductImage} />
                     <p style={{"fontSize":"large","color":"brown"}}>{Product.name}</p>
                     <p><img src="https://cdn-icons-png.flaticon.com/128/7204/7204809.png" style={{"height":"2vh","width":"2vw"}} />{Product.Price}</p>
                     </Link>

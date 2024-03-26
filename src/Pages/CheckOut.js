@@ -4,13 +4,34 @@ import CheckOutItems from '../Components/CheckOutItem';
 import { useSelector } from 'react-redux';
 import styles from "../CSS/CheckOut.module.css";
 import { useState,useEffect } from 'react';
-function CheckOut(props) {
-    const {cartItems,totalPrice}=useSelector(state=>state.CartReducer);
-    
+import { auth } from '../Firebase/firebaseInit';
+import { doc } from 'firebase/firestore';
+import { db } from '../Firebase/firebaseInit';
+import { getDoc } from 'firebase/firestore';
 
+function CheckOut(props) {
+    
+    const [cartItems,setCartItems]=useState([]);
+    const [totalPrice,setTotalPrice]=useState(0);
     useEffect(()=>{
+      getCartItems();
+      getTotalPrice();
         
-    },[totalPrice]);
+    },[]);
+    const getCartItems=async ()=>{
+        const userId=auth.currentUser.uid;
+        let docRef=doc(db,'users',userId);
+        const docSnap=await getDoc(docRef);
+        setCartItems(docSnap.data().cart);
+        
+        
+    }
+    const getTotalPrice=()=>{
+        let price=cartItems.reduce((acc,item)=>(
+            acc+item.Price
+        ),0);
+        setTotalPrice(price);
+    }
     return (
         <div className={styles.checkout_body}>
              <Grid container >
@@ -21,7 +42,7 @@ function CheckOut(props) {
                             { 
                                 cartItems.length >0 ?
                                 cartItems.map( (value) => (
-                                    <CheckOutItems definition={value} />
+                                    <CheckOutItems definition={value}  />
                                 ))
                                 : <div style={{height: "100vh", margin: "30px" }}> Please buy something</div>
                             }

@@ -24,6 +24,7 @@
 }
 .navbarSearchContainer{
     margin:20px 0px 0px 120px;
+    
 }
 
 .navbarUserContainer{
@@ -55,6 +56,15 @@
 
 
 }
+.searchBarOptions{
+    background-color: #FFFFFF;
+    z-index: 3;
+    position:absolute;
+    color:black;
+    width:43%;
+    cursor: pointer;
+}
+
 .signOut{
     color:#E9004B;
     padding-bottom:22px;
