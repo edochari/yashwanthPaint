@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import Grid from '@mui/material/Grid';
 import CheckOutItems from '../Components/CheckOutItem';
-import { useSelector } from 'react-redux';
 import styles from "../CSS/CheckOut.module.css";
 import { useState,useEffect } from 'react';
 import { auth } from '../Firebase/firebaseInit';
@@ -9,7 +8,7 @@ import { doc } from 'firebase/firestore';
 import { db } from '../Firebase/firebaseInit';
 import { getDoc } from 'firebase/firestore';
 import { updateDoc } from 'firebase/firestore';
-import { arrayRemove } from 'firebase/firestore';
+
 
 function CheckOut(props) {
     
