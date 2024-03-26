@@ -39,6 +39,9 @@
 .navbarItemsContainer{
     display:flex;
 }
+.navbarProfileContainer{
+    display: flex;
+}
 
 .navbarItemsContainer{
     margin-left:80px;
@@ -52,6 +55,7 @@
     margin:25px;
     color:#E9004B;
     font-size: larger;
+    cursor: pointer;
     
 
 
@@ -63,6 +67,23 @@
     color:black;
     width:43%;
     cursor: pointer;
+}
+
+.navbarIcon{
+    position:relative;
+
+}
+.cartItemsCount{
+    font-size: 15px;
+    right: 60px;
+    top: 15px;
+   position:absolute;
+   border-radius: 50%;
+   background-color: violet;
+   height:15px;
+   width:15px;
+   padding-left:5px;
+
 }
 
 .signOut{

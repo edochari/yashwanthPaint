@@ -5,7 +5,7 @@ function CheckOutItems(props) {
     const dispatch=useDispatch();
     const handleDelete=()=>{
         
-        dispatch(CartActions.removeFromCart(props.definition.id));
+        props.delete(props.definition.id);
     }
     return (
         <div>

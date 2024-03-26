@@ -77,13 +77,13 @@ function ProductDetails(){
               
                         <div className={styles.placeholder_order}>
                             
-                            <div > 
+                            
                                
                                 <button className={styles.placeorder__button+' '+styles.addtocart} onClick={()=>handleAdd()} >Add to Cart</button>
                                
-                                <button className={styles.placeorder__button+' '+styles.buynow}>Buy Now</button>
+                                {/* <button className={styles.placeorder__button+' '+styles.buynow}>Buy Now</button> */}
                                 
-                            </div>
+                            
                         </div>
                    
               </Grid>

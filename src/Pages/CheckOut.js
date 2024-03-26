@@ -8,6 +8,8 @@ import { auth } from '../Firebase/firebaseInit';
 import { doc } from 'firebase/firestore';
 import { db } from '../Firebase/firebaseInit';
 import { getDoc } from 'firebase/firestore';
+import { updateDoc } from 'firebase/firestore';
+import { arrayRemove } from 'firebase/firestore';
 
 function CheckOut(props) {
     
@@ -17,12 +19,25 @@ function CheckOut(props) {
       getCartItems();
       getTotalPrice();
         
-    },[]);
+    },[cartItems]);
+    const deleteCartItem=async (id)=>{
+        if(auth.currentUser!==null){
+            const userId=auth.currentUser.uid;
+           let docRef=doc(db,'users',userId);
+           const docSnap=await getDoc(docRef);
+          let updatedCart=docSnap.data().cart.filter((item)=>item.id!==id);
+          await updateDoc(docRef,({cart:updatedCart}));
+        
+    }
+
+}
     const getCartItems=async ()=>{
+        if(auth.currentUser!==null){
         const userId=auth.currentUser.uid;
         let docRef=doc(db,'users',userId);
         const docSnap=await getDoc(docRef);
         setCartItems(docSnap.data().cart);
+        }
         
         
     }
@@ -42,7 +57,7 @@ function CheckOut(props) {
                             { 
                                 cartItems.length >0 ?
                                 cartItems.map( (value) => (
-                                    <CheckOutItems definition={value}  />
+                                    <CheckOutItems definition={value} delete={deleteCartItem}  />
                                 ))
                                 : <div style={{height: "100vh", margin: "30px" }}> Please buy something</div>
                             }

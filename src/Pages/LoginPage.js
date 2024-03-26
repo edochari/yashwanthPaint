@@ -11,7 +11,7 @@ const Login=()=>{
    const navigate=useNavigate();
    const handleSubmit=async (e)=>{
      e.preventDefault();
-     console.log("submit login");
+     
      signInWithEmailAndPassword(auth,email,password)
      .then((userCredentials)=>{
       console.log("user",userCredentials);
@@ -19,7 +19,7 @@ const Login=()=>{
       console.log(error);
      });
     
-     navigate("/");
+     navigate(-1);
    }
 
    return (

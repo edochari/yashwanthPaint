@@ -7,18 +7,31 @@ import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { doc,getDoc } from "firebase/firestore";
+import { db } from "../Firebase/firebaseInit";
+import { useEffect } from "react";
 function NavBar(){
     const [user,loading,error]=useAuthState(auth);
     const navigate=useNavigate();
+    const [cartLength,setCartLength]=useState(0);
     const [showOptions, setShowOptions] = useState(false);
     const handleSearchBarClick = () => {
         setShowOptions(true);
       };
-
-      const handleOptionClick = (option) => {
+    const getCartLength=async ()=>{
+        if(auth.currentUser)
+        {
+            const userId=auth.currentUser.uid;
+            let docRef=doc(db,'users',userId);
+            const docSnap=await getDoc(docRef);
+            console.log("doc snap",docSnap.data().cart.length)
+            setCartLength(docSnap.data().cart.length);
+            console.log(cartLength);
+        }
        
-        setShowOptions(false);
-      };
+
+    }
+      
     const handleSignOut=()=>{
         signOut(auth).then(() => {
             // Sign-out successful.
@@ -28,6 +41,9 @@ function NavBar(){
             // An error happened.
             });
     }
+    useEffect(()=>{
+        getCartLength();
+    },[cartLength]);
     
     
     return (
@@ -58,19 +74,17 @@ function NavBar(){
                     <Link to="/login">
                     <img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="No User Icon" className={styles.navbarIcon}/></Link>
                 </div>
-                {console.log("main user",user)}
+                <div className={styles.navbarProfileContainer}>
                 {user?<div className={styles.displayName}>{user.displayName}</div>:null}
-                {user?<button onClick={handleSignOut} className={styles.signOut}>SignOut</button>:null}
+                {user?<div onClick={handleSignOut} className={styles.displayName}>SignOut</div>:null}
+                </div>
                 
                 <div className={styles.navbarCartContainer}>
                     <img src="https://cdn-icons-png.flaticon.com/128/4903/4903482.png" alt="No cart icon" className={styles.navbarIcon} />
                     {
-                        user?<div classname={styles.cartItemsCount}>
-                            0
-                        
-                            </div>
-                        :null
+                        user?(<div className={styles.cartItemsCount}>{cartLength}</div>):null
                     }
+                    
                     
 
                 </div>
