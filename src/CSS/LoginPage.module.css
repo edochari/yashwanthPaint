@@ -24,6 +24,8 @@
   }
 .field {
     width: 100%;
+   
+   
   }
   .field input {
     border: 1px solid rgba(0, 0, 0, 0.12);
@@ -38,8 +40,9 @@
   .field input:focus {
     outline: none;
   }
-  .field button{
-    width: 96%;
+  .buttons
+  {
+    width:100%;
     margin-top: 20px;
     background: #ef7917;
     border-radius: 2px;
@@ -48,7 +51,11 @@
     padding: 9px;
     border: none;
     outline: none;
+    text-align: center;
+    cursor:pointer;
+    text-decoration: none;
   }
+  
   .linkContainer{
     margin-top: 20px;
     width:100%;

@@ -97,11 +97,11 @@ const SignUp = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
-      <div className={styles.field}>
-        <button disabled={signingUp}>
-          {signingUp ? 'Signing up...' : 'Signup'}
+     
+        <button disabled={signingUp} className={styles.buttons}>
+          SignUp
         </button>
-      </div>
+      
     </form>
   );
 }

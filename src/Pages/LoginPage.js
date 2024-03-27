@@ -35,14 +35,10 @@ const Login=()=>{
              <input type="password" placeholder='password' value={password} 
              onChange={(e)=>setPassword(e.target.value)}/>
           </div>
-          <div className={styles.field} >
-        
-               <button onClick={handleSubmit}>Login</button>
-          </div>
-          <div className={styles.linkContainer} >
-             <Link to="/signup"  className={styles.link} >
+          <div onClick={handleSubmit} className={styles.buttons}>Login</div>
+          <Link to="/signup"  className={styles.buttons} >
                Register</Link>
-          </div>
+          
 
       </form>
       </div>
