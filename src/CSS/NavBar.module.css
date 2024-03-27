@@ -75,14 +75,15 @@
 }
 .cartItemsCount{
     font-size: 15px;
-    right: 60px;
+    right: 40px;
     top: 15px;
    position:absolute;
    border-radius: 50%;
    background-color: violet;
    height:15px;
-   width:15px;
+   width:12px;
    padding-left:5px;
+   
 
 }
 
